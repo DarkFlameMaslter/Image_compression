@@ -6,9 +6,9 @@ from PIL import Image
 
 def get_Y_Cb_Cr_img(path):
     img = cv.imread(path)
-    img_ = Image.open(path)
-    plt.imshow(img_)
-    plt.show()
+    # img_ = Image.open(path)
+    # plt.imshow(img_)
+    # plt.show()
     img = cv.cvtColor(img, cv.COLOR_RGB2YCrCb)
     return img
 

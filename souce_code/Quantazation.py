@@ -11,7 +11,7 @@ QM = np.asarray([[16 ,11 ,10 ,16 ,24 ,40 ,51 ,61],
        [49 ,64 ,78 ,87 ,103 ,121 ,120 ,101],
        [72 ,92 ,95 ,98 ,112 ,100 ,103 ,99]])
 
-def Quantazation(block, QM = QM):
+def quant(block, QM = QM):
     N = block.shape[0]
     output = np.zeros(block.shape, dtype = 'int16')
     for i in range(N):

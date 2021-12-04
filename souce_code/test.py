@@ -1,24 +1,43 @@
 from Image_pre_process import img_pre_prs
 from DCT_Forward import DCT_block
-from
-import os
+from Quantazation import quant
+from HuffmanCoding import read_block_coef_zig_zac, Huffman_encoding
 
-currpath = os.getcwd()
-img_path = os.path.join(currpath, "souce_code/souce_code/Test_data/Miko.jpeg")
+import os
+import numpy as np
+# currpath = os.getcwd()
+# img_path = os.path.join(currpath, "souce_code/souce_code/Test_data/Miko.jpeg")
+img_path = './Test_data/Miko.jpeg'
 print(img_path)
 blocks = img_pre_prs(img_path)
 print(blocks[0])
 blocks = blocks[:4]
 
-
-def DCT_All_image(blocks):
+def forward_All_image(blocks):
     for i in range(len(blocks)):
         blocks[i] = blocks[i]-128
         blocks[i] = DCT_block(blocks[i])
-
-        print('complete DCT for block: '+str(i))
+        blocks[i] = quant(blocks[i])
+        print('complete quanta for block: '+str(i))
     return blocks
 
-blocks = DCT_All_image(blocks)
-print('DCT complete')
-print(blocks[0])
+blocks = forward_All_image(blocks)
+print('Quanta complete')
+print(blocks)
+
+sequence = []
+for i in range(len(blocks)):
+    sequence.append(read_block_coef_zig_zac(blocks[i]))
+print('test sequence: length '+str(len(sequence)))
+print(sequence)
+
+temp_block = np.zeros((8,8))
+temp_sequence = read_block_coef_zig_zac(temp_block)
+
+new_sequence = []
+new_sequence.append(Huffman_encoding(temp_sequence, sequence[0]))
+
+for i in range(1,len(sequence)):
+    new_sequence.append(Huffman_encoding(sequence[i-1], sequence[i]))
+print('new sequence created:length '+str(len(sequence)))
+print(new_sequence)
