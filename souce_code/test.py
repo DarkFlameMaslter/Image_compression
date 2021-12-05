@@ -2,6 +2,7 @@ from Image_pre_process import img_pre_prs
 from DCT_Forward import DCT_block
 from Quantazation import quant
 from HuffmanCoding import read_block_coef_zig_zac, Huffman_encoding
+from Bin_encoding import encoding_bin
 
 import os
 import numpy as np
@@ -11,7 +12,7 @@ img_path = './Test_data/Miko.jpeg'
 print(img_path)
 blocks = img_pre_prs(img_path)
 print(blocks[0])
-blocks = blocks[:4]
+
 
 def forward_All_image(blocks):
     for i in range(len(blocks)):
@@ -41,3 +42,7 @@ for i in range(1,len(sequence)):
     new_sequence.append(Huffman_encoding(sequence[i-1], sequence[i]))
 print('new sequence created:length '+str(len(sequence)))
 print(new_sequence)
+
+print('Seq bin encoding: ')
+for i in range(len(new_sequence)):
+    encoding_bin(new_sequence[i])

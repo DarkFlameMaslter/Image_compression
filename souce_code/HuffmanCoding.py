@@ -77,7 +77,11 @@ now encoding to compress the image
 
 def DC_encoding(previous_DC, Coe_list):
     DC_Coe = previous_DC - Coe_list[0]
-    cat = m.ceil(m.log2(abs(DC_Coe)))
+    cat = 0
+    if(DC_Coe ==0):
+        cat = 0
+    else:
+        cat = m.floor(m.log2(abs(DC_Coe)))+1
     return cat,DC_Coe
 
 def AC_encoding(Coe_list, new_sequence):
@@ -96,8 +100,9 @@ def AC_encoding(Coe_list, new_sequence):
 
 def Huffman_encoding(previous_seq, sequence):
     new_sequence = []
+    # print('test123: '+str(previous_seq[0]) +' '+str(sequence[0]))
     temp = DC_encoding(previous_seq[0],sequence)
-    sequence[0] = temp[1]
+    # sequence[0] = temp[1]
     new_sequence.append([temp[0],temp[1]])
     AC_encoding(sequence, new_sequence)
     return new_sequence

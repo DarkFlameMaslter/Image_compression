@@ -7,9 +7,11 @@ from PIL import Image
 def get_Y_Cb_Cr_img(path):
     img = cv.imread(path)
     # img_ = Image.open(path)
-    # plt.imshow(img_)
-    # plt.show()
+
     img = cv.cvtColor(img, cv.COLOR_RGB2YCrCb)
+    img = img[100:100+(8*4),100:100+(8*4),:]
+    plt.imshow(img, cmap = 'gray')
+    plt.show()
     return img
 
 def dividing_blocks(img):
