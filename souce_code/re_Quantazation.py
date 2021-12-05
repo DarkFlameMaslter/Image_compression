@@ -1,7 +1,6 @@
 import math as m
 import numpy as np
 
-
 LQM = np.asarray([[16 ,11 ,10 ,16 ,24 ,40 ,51 ,61],
        [12 ,12 ,14 ,19 ,26 ,58 ,60 ,55],
        [14 ,13 ,16 ,24 ,40 ,57 ,69 ,56],
@@ -24,18 +23,18 @@ CQM = np.asarray(
     ]
 )
 
-def Lquant(block, QM = LQM):
+def re_Lquant(block, QM = LQM):
     N = block.shape[0]
     output = np.zeros(block.shape, dtype = 'int16')
     for i in range(N):
         for j in range(N):
-            output[i,j] = block[i,j]//QM[i,j]
+            output[i,j] = block[i,j]*QM[i,j]
     return output
 
-def Cquant(block, QM = CQM):
+def re_Cquant(block, QM = CQM):
     N = block.shape[0]
     output = np.zeros(block.shape, dtype = 'int16')
     for i in range(N):
         for j in range(N):
-            output[i,j] = block[i,j]//QM[i,j]
+            output[i,j] = block[i,j]*QM[i,j]
     return output

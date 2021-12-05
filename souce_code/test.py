@@ -3,6 +3,7 @@ from DCT_Forward import DCT_block
 from Quantazation import quant
 from HuffmanCoding import read_block_coef_zig_zac, Huffman_encoding
 from Bin_encoding import encoding_bin
+from To_file import writing
 
 import os
 import numpy as np
@@ -18,7 +19,7 @@ def forward_All_image(blocks):
     for i in range(len(blocks)):
         blocks[i] = blocks[i]-128
         blocks[i] = DCT_block(blocks[i])
-        blocks[i] = quant(blocks[i])
+        blocks[i] = Yquant(blocks[i])
         print('complete quanta for block: '+str(i))
     return blocks
 
@@ -44,5 +45,10 @@ print('new sequence created:length '+str(len(sequence)))
 print(new_sequence)
 
 print('Seq bin encoding: ')
+bin_seq = []
 for i in range(len(new_sequence)):
-    encoding_bin(new_sequence[i])
+    bin_seq.append(encoding_bin(new_sequence[i]))
+
+print('final_seq: ')
+print(bin_seq)
+writing(bin_seq)

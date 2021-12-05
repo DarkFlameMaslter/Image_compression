@@ -38,12 +38,14 @@ def encoding_bin(seq):
     # print('bin_seq: '+bin_seq)
     #encoding AC
     # print('AC encoding: ')
-    for i in range(1,len(seq[1:])):
+    for i in range(1,len(seq)):
         AC_coe = seq[i]
+        # print(AC_coe)
         if AC_coe == 'ZRL':
             bin_seq += '11110000'
         elif AC_coe == 'EOB':
             bin_seq += '00000000'
+            # print('EOB_EOB EOB check point!!!!!!')
         else:
             rrrr = AC_coe[0]
             coe = AC_coe[1]
