@@ -31,7 +31,7 @@ def restore(path,Y,Cb,Cr):
             new_img[j*8:(j+1)*8,i*8:(i+1)*8,2] = Cr[count]
             count += 1
 
-    plt.imshow(img, cmap = 'gray')
+    plt.imshow(new_img, cmap = 'gray')
     plt.show()
 
     return new_img
