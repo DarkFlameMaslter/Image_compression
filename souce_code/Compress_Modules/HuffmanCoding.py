@@ -98,7 +98,7 @@ def AC_encoding(Coe_list, new_sequence):
     new_sequence.append('EOB')
 
 
-def Huffman_encoding(previous_seq, sequence):
+def RLC(previous_seq, sequence):
     new_sequence = []
     # print('test123: '+str(previous_seq[0]) +' '+str(sequence[0]))
     temp = DC_encoding(previous_seq[0],sequence)

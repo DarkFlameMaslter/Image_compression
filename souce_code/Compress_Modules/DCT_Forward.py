@@ -10,8 +10,8 @@ def DCT_block(block):
             temp = 0
             for x in range(N):
                 for y in range(N):
-                    a = m.cos((2*x +1)*u / 16 )
-                    b = m.cos((2*y +1)*v / 16 )
+                    a = m.cos((2*x +1)*u*m.pi / 16 )
+                    b = m.cos((2*y +1)*v*m.pi / 16 )
                     temp = temp + (block[x,y]*a*b)
             Cv = m.sqrt(1/2) if v == 0 else 1
             Cu = m.sqrt(1/2) if v == 0 else 1

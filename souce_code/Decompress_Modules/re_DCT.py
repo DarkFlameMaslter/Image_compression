@@ -10,8 +10,8 @@ def iDCT_block(block):
             temp = 0
             for v in range(N):
                 for u in range(N):
-                    a = m.cos((2*x +1)*u / 16 )
-                    b = m.cos((2*y +1)*v / 16 )
+                    a = m.cos((2*x +1)*u*m.pi / 16 )
+                    b = m.cos((2*y +1)*v*m.pi / 16 )
 
                     Cv = m.sqrt(1/2) if v == 0 else 1
                     Cu = m.sqrt(1/2) if v == 0 else 1
